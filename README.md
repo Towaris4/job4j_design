@@ -1,5 +1,5 @@
   
-2.1.0. Maven
+   2.1.0. Maven
    2.1.1. AssertJ
    2.1.2. Iterator
    2.1.3. Generic
