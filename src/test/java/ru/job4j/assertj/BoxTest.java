@@ -12,24 +12,47 @@ class BoxTest {
         assertThat(name).isEqualTo("Sphere");
     }
 
+    @Test
+    void isThisCube() {
+        Box box = new Box(8, 10);
+        String name = box.whatsThis();
+        assertThat(name).isEqualTo("Cube");
+    }
+
 
     @Test
-    void getNumberOfVertices() {
+    void getNumberOfVerticesNull() {
         Box box = new Box(0, 10);
         assertThat(box.getNumberOfVertices()).isEqualTo(0);
-
-
     }
 
     @Test
-    void isExist() {
-        Box box = new Box(0, 10);
+    void getNumberOfVerticesFive() {
+        Box box = new Box(5, 15);
+        assertThat(box.getNumberOfVertices()).isEqualTo(-1);
+    }
+
+    @Test
+    void isExistTrue() {
+        Box box = new Box(0, 5);
         assertThat(box.isExist()).isEqualTo(true);
     }
 
     @Test
-    void getArea() {
+    void isExistFalse() {
+        Box box = new Box(3, 2);
+        assertThat(box.isExist()).isEqualTo(false);
+    }
+
+    @Test
+    void getAreaCubeEdgeTen() {
         Box box = new Box(8, 10);
         assertThat(box.getArea()).isEqualTo(600);
+    }
+
+    @Test
+    void getAreaCubeEdgeTenArea() {
+        Box box = new Box(8, 11);
+        assertThat(box.getArea()).isEqualTo(726);
     }
 }
