@@ -22,7 +22,7 @@ public class MatrixIterator implements Iterator<Integer> {
             if (searchColumn >= data[searchRow].length) {
                 searchRow++;
                 searchColumn = 0;
-            } else if (data[searchRow][searchColumn] == 0){
+            } else if (data[searchRow][searchColumn] == 0) {
                 searchColumn++;
                 if (searchColumn == data[searchRow].length) {
                     searchRow++;
@@ -44,7 +44,7 @@ public class MatrixIterator implements Iterator<Integer> {
             if (column >= data[row].length) {
                 row++;
                 column = 0;
-            } else if (data[row][column] == 0){
+            } else if (data[row][column] == 0) {
                 column++;
                 if (column == data[row].length) {
                     row++;
