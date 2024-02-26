@@ -51,9 +51,9 @@ public class MatrixIterator implements Iterator<Integer> {
                     column = 0;
                 }
             } else {
-                return data[row][column++];
+                break;
             }
         }
-        return 0;
+        return data[row][column++];
     }
 }
