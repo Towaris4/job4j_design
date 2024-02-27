@@ -19,10 +19,10 @@ public class FlatMap<T> implements Iterator<T> {
             if (data.hasNext()) {
                 cursor = data.next();
             } else {
-                return false;
+                break;
             }
         }
-        return true;
+        return cursor.hasNext();
     }
 
     @Override
