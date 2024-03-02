@@ -17,9 +17,13 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         modCount++;
         size++;
         if (size > container.length) {
-            container = Arrays.copyOf(container, size * 2);
+            grow();
         }
         container[size - 1] = value;
+    }
+
+    private void grow() {
+        container = Arrays.copyOf(container, size * 2);
     }
 
     @Override
