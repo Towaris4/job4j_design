@@ -17,10 +17,10 @@ public class SimpleLinkedList<E> implements SimpleLinked<E> {
         if (head == null) {
             head = new Node<>(value, null);
         } else {
-            for (int i = 0; i < size - 1; i++) {
+            while (node.next != null) {
                 node = node.next;
             }
-            node.next = new Node<>(value, node);
+            node.next = new Node<>(value, null);
         }
         modCount++;
         size++;
@@ -49,7 +49,7 @@ public class SimpleLinkedList<E> implements SimpleLinked<E> {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return node.next != null;
+                return node != null;
             }
 
             @Override
