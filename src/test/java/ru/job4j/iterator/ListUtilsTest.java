@@ -34,19 +34,19 @@ class ListUtilsTest {
     }
 
     @Test
-    void WhenRemoveIf() {
+    void whenRemoveIf() {
         ListUtils.removeIf(input, x -> (x > 1));
         assertThat(input).hasSize(1);
     }
 
     @Test
-    void WhenReplaceIf() {
+    void whenReplaceIf() {
         ListUtils.replaceIf(input, x -> (x == 1), 1000);
         assertThat(input).hasSize(2).containsSequence(1000, 3);
     }
 
     @Test
-    void WhenRemoveAll() {
+    void whenRemoveAll() {
         List<Integer> elements = new ArrayList<>(Arrays.asList(1, 3));
         ListUtils.removeAll(input, elements);
         assertThat(input).hasSize(0);
