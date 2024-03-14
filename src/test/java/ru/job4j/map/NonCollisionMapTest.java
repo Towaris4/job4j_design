@@ -174,7 +174,7 @@ class NonCollisionMapTest {
         SimpleMap<Integer, String> map = new NonCollisionMap<>();
         assertThat(map.put(1, "3")).isTrue();
         assertThat(map.put(1, "4")).isFalse();
-        assertThat(map.put(2, "5")).isTrue();;
+        assertThat(map.put(2, "5")).isTrue();
         assertThat(map.get(1)).isEqualTo("3");
         assertThat(map.get(2)).isEqualTo("5");
     }
@@ -184,7 +184,7 @@ class NonCollisionMapTest {
         SimpleMap<Integer, String> map = new NonCollisionMap<>();
         assertThat(map.put(1, "3")).isTrue();
         assertThat(map.put(1, "4")).isFalse();
-        assertThat(map.put(2, "5")).isTrue();;
+        assertThat(map.put(2, "5")).isTrue();
         assertThat(map.get(1)).isEqualTo("3");
         assertThat(map.get(2)).isEqualTo("5");
     }
