@@ -2,6 +2,8 @@ package ru.job4j.map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import javax.swing.text.html.HTMLDocument;
 import java.util.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -149,5 +151,79 @@ class NonCollisionMapTest {
         SimpleMap<Integer, String> map = new NonCollisionMap<>();
         assertThat(map.put(0, "0")).isTrue();
         assertThat(map.get(null)).isNull();
+    }
+
+    @Test
+    void whenCheckPutTwoObject() {
+        SimpleMap<Integer, String> map = new NonCollisionMap<>();
+        assertThat(map.put(1, "2")).isTrue();
+        assertThat(map.put(1, "2")).isFalse();
+        assertThat(map.get(null)).isNull();
+    }
+
+    @Test
+    void whenCheckPutThreeObject() {
+        SimpleMap<Integer, String> map = new NonCollisionMap<>();
+        assertThat(map.put(1, "2")).isTrue();
+        assertThat(map.put(1, "2")).isFalse();
+        assertThat(map.put(2, "2")).isTrue();
+    }
+
+    @Test
+    void whenCheckGetTwoObject() {
+        SimpleMap<Integer, String> map = new NonCollisionMap<>();
+        assertThat(map.put(1, "3")).isTrue();
+        assertThat(map.put(1, "4")).isFalse();
+        assertThat(map.put(2, "5")).isTrue();
+        assertThat(map.get(1)).isEqualTo("3");
+        assertThat(map.get(2)).isEqualTo("5");
+    }
+
+    @Test
+    void whenCheckGetThreeObject() {
+        SimpleMap<Integer, String> map = new NonCollisionMap<>();
+        assertThat(map.put(1, "3")).isTrue();
+        assertThat(map.put(1, "4")).isFalse();
+        assertThat(map.put(2, "5")).isTrue();
+        assertThat(map.get(1)).isEqualTo("3");
+        assertThat(map.get(2)).isEqualTo("5");
+    }
+
+    @Test
+    void whenCheckRemoveTwoObject() {
+        SimpleMap<Integer, String> map = new NonCollisionMap<>();
+        assertThat(map.put(1, "3")).isTrue();
+        assertThat(map.put(2, "5")).isTrue();
+        assertThat(map.remove(1)).isTrue();
+        assertThat(map.remove(2)).isTrue();
+    }
+
+    @Test
+    void whenCheckRemoveThreeObject() {
+        SimpleMap<Integer, String> map = new NonCollisionMap<>();
+        assertThat(map.put(1, "3")).isTrue();
+        assertThat(map.put(2, "5")).isTrue();
+        assertThat(map.put(3, "5")).isTrue();
+        assertThat(map.remove(1)).isTrue();
+        assertThat(map.remove(2)).isTrue();
+        assertThat(map.remove(3)).isTrue();
+    }
+
+    @Test
+    void whenIteratorHasNext() {
+        SimpleMap<Integer, String> map = new NonCollisionMap<>();
+        map.put(1, "3");
+        map.put(2, "5");
+        map.put(3, "5");
+        Iterator<Integer> iterator = map.iterator();
+        assertThat(iterator.hasNext()).isTrue();
+    }
+
+    @Test
+    void  whenIteratorNext() {
+        SimpleMap<Integer, String> map = new NonCollisionMap<>();
+        map.put(1, "3");
+        Iterator<Integer> iterator = map.iterator();
+        assertThat(iterator.next()).isEqualTo(1);
     }
 }
