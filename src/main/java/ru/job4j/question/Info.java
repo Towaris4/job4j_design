@@ -4,6 +4,27 @@ import java.util.Objects;
 
 public class Info {
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Info info = (Info) o;
+        return added == info.added && changed == info.changed && deleted == info.deleted;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(added, changed, deleted);
+    }
+
+    public int getAdded() {
+        return added;
+    }
+
+    public void setAdded(int added) {
+        this.added = added;
+    }
+
     private int added;
     private int changed;
     private int deleted;
