@@ -12,7 +12,7 @@ public class Analysis {
         String previousDate = null;
         int currentStatus = 0;
         String currentDate = null;
-        StringJoiner answer = new StringJoiner(";");
+        StringJoiner answer = new StringJoiner("");
         try (BufferedReader reader = new BufferedReader(new FileReader(source))) {
             for (String line : reader.lines().toList()) {
                 String[] split = line.split(" ");
@@ -21,12 +21,14 @@ public class Analysis {
                 if (((currentStatus == 400) || (currentStatus == 500))
                     && ((previousStatus == 200) || (previousStatus == 300) || (previousStatus == 0))) {
                     answer.add(currentDate);
+                    answer.add(";");
                 }
                 if (((currentStatus == 200) || (currentStatus == 300))
                         && ((previousStatus == 400) || (previousStatus == 500))) {
                     answer.add(currentDate);
+                    answer.add(";");
                     answerList.add(answer.toString());
-                    answer = new StringJoiner(";");
+                    answer = new StringJoiner("");
                 }
                 previousDate = currentDate;
                 previousStatus = currentStatus;
