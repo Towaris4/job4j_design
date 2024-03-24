@@ -25,8 +25,16 @@ class ConfigTest {
     }
 
     @Test
-    void whenPairWithIllegalArgumentException() {
-        String path = "./data/pair_without_Illegal.properties";
+    void whenEndEqualsIllegalArgumentException() {
+        String path = "./data/end_equals_Illegal.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void whenBeginEqualsIllegalArgumentException() {
+        String path = "./data/begin_equals_Illegal.properties";
         Config config = new Config(path);
         assertThatThrownBy(config::load)
                 .isInstanceOf(IllegalArgumentException.class);
