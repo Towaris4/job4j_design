@@ -12,5 +12,4 @@ public class ByteArrayStream {
             System.out.print((char) data);
         }
     }
-
 }
