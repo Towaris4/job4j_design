@@ -8,7 +8,6 @@ import java.util.StringJoiner;
 public class Analysis {
     boolean serverStatus = true;
 
-
     public void unavailable(String source, String target) {
         try (BufferedReader reader = new BufferedReader(new FileReader(source));
              PrintWriter output = new PrintWriter(
@@ -33,5 +32,6 @@ public class Analysis {
     public static void main(String[] args) {
         Analysis analysis = new Analysis();
         analysis.unavailable("data/server.log", "data/target.csv");
+
     }
 }
