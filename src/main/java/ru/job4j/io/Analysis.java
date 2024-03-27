@@ -17,15 +17,11 @@ public class Analysis {
                 String[] array = line.split(" ");
                 StringJoiner out = new StringJoiner("");
                 if ((array[0].equals("500") || array[0].equals("400")) && serverStatus) {
-                    out.add(array[1]);
-                    out.add(";");
-                    output.print(out.toString());
+                    output.append(array[1]).append(";");
                     serverStatus = false;
                 }
                 if ((array[0].equals("200") || array[0].equals("300")) && !serverStatus) {
-                    out.add(array[1]);
-                    out.add(";");
-                    output.println(out.toString());
+                    output.append(array[1]).append(";").append(System.lineSeparator());
                     serverStatus = true;
                 }
             });
