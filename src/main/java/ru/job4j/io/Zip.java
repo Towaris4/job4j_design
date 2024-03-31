@@ -33,6 +33,19 @@ public class Zip {
         }
     }
 
+    private static void validateArgs(ArgsName argsName) {
+        File file = new File(argsName.get("d"));
+        if (!file.isDirectory()) {
+            throw new IllegalArgumentException(String.format("Not directory %s", argsName.get("d")));
+        }
+        if (!argsName.get("e").startsWith(".")) {
+            throw new IllegalArgumentException(String.format("Not expansion %s", argsName.get("e")));
+        }
+        if (!argsName.get("o").endsWith(".zip")) {
+            throw new IllegalArgumentException("The archive name does not have a \".zip\" extension");
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         Zip zip = new Zip();
         zip.packSingleFile(
@@ -40,6 +53,7 @@ public class Zip {
                 new File("./pom.zip")
         );
         ArgsName argsName = ArgsName.of(args);
+        validateArgs(argsName);
         zip.packFiles(Search.search(Paths.get(argsName.get("d")),
                 path -> !path.toFile().getName().endsWith(argsName.get("e"))),
                 new File(argsName.get("o")));
