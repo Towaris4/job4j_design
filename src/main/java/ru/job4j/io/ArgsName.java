@@ -40,7 +40,6 @@ public class ArgsName {
     }
 
     public static ArgsName of(String[] args) {
-        /* TODO add the necessary checks. */
         if (args.length == 0) {
             throw new IllegalArgumentException("Arguments not passed to program");
         }
