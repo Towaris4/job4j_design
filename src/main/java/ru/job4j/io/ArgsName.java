@@ -17,21 +17,25 @@ public class ArgsName {
     private void parse(String[] args) {
         for (String line : args) {
             int index = line.indexOf("=");
-            if (index == -1) {
-                throw new IllegalArgumentException("Error: This argument '" + line + "' does not contain an equal sign");
-            }
-            if (!line.startsWith("-")) {
-                throw new IllegalArgumentException("Error: This argument '" + line + "' does not start with a '-' character");
-            }
-            if (index - 1 <= 0) {
-                throw new IllegalArgumentException("Error: This argument '" + line + "' does not contain a key");
-            }
-            if (index + 1 == line.length()) {
-                throw new IllegalArgumentException("Error: This argument '" + line + "' does not contain a value");
-            }
+            validate(line, index);
             String key = line.substring(1, index);
             String value = line.substring(index + 1);
             values.put(key, value);
+        }
+    }
+
+    private static void validate(String line, int index) {
+        if (index == -1) {
+            throw new IllegalArgumentException("Error: This argument '" + line + "' does not contain an equal sign");
+        }
+        if (!line.startsWith("-")) {
+            throw new IllegalArgumentException("Error: This argument '" + line + "' does not start with a '-' character");
+        }
+        if (index - 1 <= 0) {
+            throw new IllegalArgumentException("Error: This argument '" + line + "' does not contain a key");
+        }
+        if (index + 1 == line.length()) {
+            throw new IllegalArgumentException("Error: This argument '" + line + "' does not contain a value");
         }
     }
 
