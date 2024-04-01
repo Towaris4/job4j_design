@@ -38,6 +38,8 @@ public class ConsoleChat {
                 case CONTINUE:
                     bot = true;
                     break;
+                default:
+                    break;
             }
             if (run && bot) {
                 Random random = new Random();
