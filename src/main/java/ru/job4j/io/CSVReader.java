@@ -33,7 +33,7 @@ public class CSVReader {
             } else {
                 try (PrintWriter writer = new PrintWriter(new FileWriter(argsName.get("out"), StandardCharsets.UTF_8, true))) {
                     writer.print(stringBuilder.toString());
-                } catch(IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
