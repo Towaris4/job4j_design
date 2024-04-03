@@ -3,46 +3,43 @@ package ru.job4j.io;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class CSVReader {
     public static void handle(ArgsName argsName) throws Exception {
-        /*try (BufferedInputStream input = new BufferedInputStream(new FileInputStream(argsName.get("path")));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(argsName.get("path"), StandardCharsets.UTF_8))) {
-            var lines = new Scanner(new ByteArrayInputStream(input.readAllBytes()))
-                    .useDelimiter(System.lineSeparator());
-            String firstLine = lines.nextLine();
-            Scanner lineScanner = new Scanner(new ByteArrayInputStream(firstLine.getBytes()))
-                    .useDelimiter(";");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         File file = new File(argsName.get("path"));
-        try (var scanner = new Scanner(file).useDelimiter(System.lineSeparator())) {
-            List<Integer> columns = new ArrayList<>();
-            String nameColumns = scanner.next();
-            String[] array = nameColumns.split(argsName.get("delimiter"));
-            for (int i = 0; i < array.length; i++) {
-                if (argsName.get("filter").contains(array[i])) {
-                    columns.add(i);
-                }
+        try (var scanner = new Scanner(file)) {
+            String firstLine = scanner.nextLine();
+            List<String> nameColumns = Arrays.asList(firstLine.split(argsName.get("delimiter")));
+            String[] filter = argsName.get("filter").split(",");
+            StringBuilder stringBuilder = new StringBuilder();
+            int[] index = new int[filter.length];
+            for (int i = 0; i < filter.length; i++) {
+                index[i] = nameColumns.indexOf(filter[i]);
             }
+            stringBuilder.append(String.join(argsName.get("delimiter"), filter)).append(System.lineSeparator());
             while (scanner.hasNext()) {
-                String[] line = scanner.next().split(argsName.get("delimiter"));
-                for (int i = 0; i < columns.size() - 1; i++) {
-                    System.out.print(line[columns.get(i)]);
-                    System.out.print(argsName.get("delimiter"));
+                String[] line = scanner.nextLine().split(argsName.get("delimiter"));
+                for (int i = 0; i < filter.length - 1; i++) {
+                    stringBuilder.append(line[index[i]]);
+                    stringBuilder.append(argsName.get("delimiter"));
                 }
-                System.out.print(line[columns.get(columns.size() - 1)]);
-                System.out.println();
+                stringBuilder.append(line[index[filter.length - 1]]).append(System.lineSeparator());
+            }
+            if (argsName.get("out").equals("stdout")) {
+                System.out.print(stringBuilder.toString());
+            } else {
+                try (PrintWriter writer = new PrintWriter(new FileWriter(argsName.get("out"), StandardCharsets.UTF_8, true))) {
+                    writer.print(stringBuilder.toString());
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
+
 
     public static void main(String[] args) throws Exception {
         ArgsName argsName = ArgsName.of(args);
@@ -54,7 +51,7 @@ public class CSVReader {
                 throw new IllegalArgumentException("The file name does not have a \".csv\" extension");
         }
         if (!argsName.get("out").equals("stdout") || (new File(argsName.get("out"))).isFile()) {
-            throw new IllegalArgumentException("The delimiter must be \";\"");
+            throw new IllegalArgumentException("stdout or path");
         }
         handle(argsName);
     }
