@@ -32,6 +32,9 @@ public class EchoServer {
                             case "msg=Exit ":
                                 System.out.println("Завершить работу сервера");
                                 break;
+                            default:
+                                System.out.println("Команда неизвестна");
+                                break;
                         }
                     }
                     output.flush();
