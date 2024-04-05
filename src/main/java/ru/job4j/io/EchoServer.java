@@ -18,10 +18,7 @@ public class EchoServer {
                     String head = input.readLine();
                     System.out.println(head);
                     Matcher matcher = Pattern.compile("msg=.+ ").matcher(head);
-                    for (String string = input.readLine(); string != null && !string.isEmpty(); string = input.readLine()) {
-                        System.out.println(string);
-                    }
-                    if ((head != null) && matcher.find()) {
+                    if (matcher.find()) {
                         switch (matcher.group()) {
                             case "msg=Hello ":
                                 System.out.println("Hello");
