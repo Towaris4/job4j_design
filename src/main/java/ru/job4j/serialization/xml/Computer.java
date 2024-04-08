@@ -14,6 +14,22 @@ public class Computer {
     String videoCard;
 
 
+    public String getProcessor() {
+        return processor;
+    }
+
+    public void setProcessor(String processor) {
+        this.processor = processor;
+    }
+
+    public String getVideoCard() {
+        return videoCard;
+    }
+
+    public void setVideoCard(String videoCard) {
+        this.videoCard = videoCard;
+    }
+
     public Computer() {
     }
 

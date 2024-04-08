@@ -65,4 +65,44 @@ public class Gamer {
             System.out.println(result);
         }
     }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public int getNumberOfHours() {
+        return numberOfHours;
+    }
+
+    public void setNumberOfHours(int numberOfHours) {
+        this.numberOfHours = numberOfHours;
+    }
+
+    public String getFavoriteGame() {
+        return favoriteGame;
+    }
+
+    public void setFavoriteGame(String favoriteGame) {
+        this.favoriteGame = favoriteGame;
+    }
+
+    public Computer getComputer() {
+        return computer;
+    }
+
+    public void setComputer(Computer computer) {
+        this.computer = computer;
+    }
+
+    public String[] getGames() {
+        return games;
+    }
+
+    public void setGames(String[] games) {
+        this.games = games;
+    }
 }
