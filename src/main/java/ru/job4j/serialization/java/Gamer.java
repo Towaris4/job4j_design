@@ -49,6 +49,6 @@ public class Gamer {
                         + "}";
         /* Превращаем json-строку обратно в объект */
         final Gamer gamerMod = gson.fromJson(gamerJson, Gamer.class);
-        System.out.println(gson.toJson(gamerMod));
+        System.out.println(gson.toJson(gamer));
     }
 }
