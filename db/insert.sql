@@ -1,0 +1,18 @@
+insert into rules(name) values ('delete');
+insert into rules(name) values ('create');
+insert into rules(name) values ('change');
+insert into roles(name) values ('admin');
+insert into roles(name) values ('uzver');
+insert into roles(roles, rules) values ('admin', 1);
+insert into roles(roles, rules) values ('admin', 2);
+insert into roles(roles, rules) values ('admin', 3);
+insert into roles(roles, rules) values ('uzver', 2);
+insert into roles(roles, rules) values ('uzver', 1);
+insert into users(name, role_id) values ('Ivan',1);
+insert into states(name) values ('verification');
+insert into states(name) values ('decided');
+insert into states(name) values ('processing');
+insert into categories(name) values ('important');
+insert into categories(name) values ('small');
+insert into items(name, user_id, states_id, categories_id) values ('Trubles', 1, 1, 1);
+insert into comments(name, item_id) values ('Bad problem', 1);
