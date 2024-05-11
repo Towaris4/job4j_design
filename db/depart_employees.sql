@@ -33,6 +33,6 @@ create table teens(
     gender varchar(255)
 );
 
-insert into teen(name, gender) values ('Misha', 'male'), ('Nastya', 'female'), ('Darya', 'female');
+insert into teen(name, gender) values ('Mishka', 'male'), ('Nastya', 'female'), ('Darya', 'female');
 
 select n1.name, '-', n2.name from teens n1 cross join teens n2 where n1.gender > n2.gender;
